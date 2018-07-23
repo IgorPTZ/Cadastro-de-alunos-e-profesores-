@@ -5,12 +5,11 @@
 #include <string.h>
 
 #define MAX_SIZE 8
-
+#define Q_SIZE 500
 
 MYSQL conexao;
 int statusConexao;
-char query[500];
-
+char query[Q_SIZE];
 
 
 void menu(void){
@@ -20,7 +19,7 @@ void menu(void){
     while(sentinela != 3){
 
         system("cls");
-        printf("Universidade Ruy Barbosa\n\n1-Menu de alunos\n2-Menu de docentes\n3-Sair\n\nOpÁ„o desejada:");
+        printf("Universidade Ruy Barbosa\n\n1-Menu de alunos\n2-Menu de docentes\n3-Sair\n\nOp√ß√£o desejada:");
         scanf("%d",&sentinela);
 
         switch(sentinela){
@@ -37,7 +36,7 @@ void menu(void){
                 break;
 
             default:
-                printf("OpÁ„o inv·lida\n");
+                printf("Op√ß√£o inv√°lida\n");
                 system("PAUSE");
                 break;
 
@@ -55,7 +54,7 @@ void menuAluno(void){
     while(opcaoAluno != 6){
 
         system("cls");
-        printf("OpÁıes\n\n1-Cadastrar\n2-Modificar cadastro\n3-Remover cadastro\n4-Consulta simples\n5-Consulta avanÁada\n6-Sair\n\nOpÁ„o desejada:");
+        printf("Op√ß√µes\n\n1-Cadastrar\n2-Modificar cadastro\n3-Remover cadastro\n4-Consulta simples\n5-Consulta avan√ßada\n6-Sair\n\nOp√ß√£o desejada:");
         scanf("%d",&opcaoAluno);
 
         switch(opcaoAluno){
@@ -84,7 +83,7 @@ void menuAluno(void){
                 break;
 
             default:
-                printf("OpÁ„o inv·lida\n");
+                printf("Op√ß√£o inv√°lida\n");
                 system("PAUSE");
                 break;
 
@@ -123,7 +122,7 @@ void cadastroAluno(void){
            statusConexao = mysql_query(&conexao,query);
 
            if(!statusConexao){
-                printf("\nCadastro concluÌdo com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                printf("\nCadastro conclu√≠do com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
            }else{
                 printf("\nFalha no cadastro.Tente novamente\n");
            }
@@ -132,7 +131,7 @@ void cadastroAluno(void){
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
@@ -271,7 +270,7 @@ void modificarAluno(void){
     int opcao;
 
     system("cls");
-    printf("ModificaÁ„o de cadastro\n\n");
+    printf("Modifica√ß√£o de cadastro\n\n");
 
     printf("Digite a matricula:");
     scanf("%d",&matricula);
@@ -305,20 +304,20 @@ void modificarAluno(void){
            if(!statusConexao){
 
                 if(mysql_affected_rows(&conexao) == 0){
-                     printf("\nRegistro n„o foi encontrado\n");
+                     printf("\nRegistro n√£o foi encontrado\n");
                 }else{
-                    printf("\nModificaÁ„o concluÌda com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                    printf("\nModifica√ß√£o conclu√≠da com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
                 }
 
            }else{
-                printf("\nFalha na modificaÁ„o.Tente novamente\n");
+                printf("\nFalha na modifica√ß√£o.Tente novamente\n");
            }
            system("PAUSE");
            mysql_close(&conexao);
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
@@ -332,7 +331,7 @@ void removerAluno(void){
     int matricula;
 
     system("cls");
-    printf("RemoÁ„o de cadastro\n\n");
+    printf("Remo√ß√£o de cadastro\n\n");
 
     printf("Digite a matricula:");
     scanf("%d",&matricula);
@@ -347,20 +346,20 @@ void removerAluno(void){
            if(!statusConexao){
 
                 if(mysql_affected_rows(&conexao) == 0){
-                     printf("\nRegistro n„o foi encontrado\n");
+                     printf("\nRegistro n√£o foi encontrado\n");
                 }else{
-                    printf("\nRemoÁ„o concluÌda com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                    printf("\nRemo√ß√£o conclu√≠da com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
                 }
 
            }else{
-                printf("\nFalha na remoÁ„o.Tente novamente\n");
+                printf("\nFalha na remo√ß√£o.Tente novamente\n");
            }
            system("PAUSE");
            mysql_close(&conexao);
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
@@ -375,7 +374,7 @@ void menuProfessor(void){
     while(opcaoProfessor != 6){
 
         system("cls");
-        printf("OpÁıes\n\n1-Cadastrar\n2-Modificar cadastro\n3-Remover cadastro\n4-Consulta simples\n5-Consulta avanÁada\n6-Sair\n\nOpÁ„o desejada:");
+        printf("Op√ß√µes\n\n1-Cadastrar\n2-Modificar cadastro\n3-Remover cadastro\n4-Consulta simples\n5-Consulta avan√ßada\n6-Sair\n\nOp√ß√£o desejada:");
         scanf("%d",&opcaoProfessor);
 
         switch(opcaoProfessor){
@@ -404,7 +403,7 @@ void menuProfessor(void){
                 break;
 
             default:
-                printf("OpÁ„o inv·lida\n");
+                printf("Op√ß√£o inv√°lida\n");
                 system("PAUSE");
                 break;
 
@@ -441,7 +440,7 @@ void cadastroProfessor(void){
            statusConexao = mysql_query(&conexao,query);
 
            if(!statusConexao){
-                printf("\nCadastro concluÌdo com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                printf("\nCadastro conclu√≠do com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
            }else{
                 printf("\nFalha no cadastro.Tente novamente\n");
            }
@@ -450,7 +449,7 @@ void cadastroProfessor(void){
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
@@ -589,7 +588,7 @@ void modificarProfessor(void){
     int opcao;
 
     system("cls");
-    printf("ModificaÁ„o de cadastro\n\n");
+    printf("Modifica√ß√£o de cadastro\n\n");
 
     printf("Digite a matricula:");
     scanf("%d",&matricula);
@@ -623,20 +622,20 @@ void modificarProfessor(void){
            if(!statusConexao){
 
                 if(mysql_affected_rows(&conexao) == 0){
-                     printf("\nRegistro n„o foi encontrado\n");
+                     printf("\nRegistro n√£o foi encontrado\n");
                 }else{
-                    printf("\nModificaÁ„o concluÌda com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                    printf("\nModifica√ß√£o conclu√≠da com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
                 }
 
            }else{
-                printf("\nFalha na modificaÁ„o.Tente novamente\n");
+                printf("\nFalha na modifica√ß√£o.Tente novamente\n");
            }
            system("PAUSE");
            mysql_close(&conexao);
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
@@ -650,7 +649,7 @@ void removerProfessor(void){
     int matricula;
 
     system("cls");
-    printf("RemoÁ„o de cadastro\n\n");
+    printf("Remo√ß√£o de cadastro\n\n");
 
     printf("Digite a matricula:");
     scanf("%d",&matricula);
@@ -665,20 +664,20 @@ void removerProfessor(void){
            if(!statusConexao){
 
                 if(mysql_affected_rows(&conexao) == 0){
-                     printf("\nRegistro n„o foi encontrado\n");
+                     printf("\nRegistro n√£o foi encontrado\n");
                 }else{
-                    printf("\nRemoÁ„o concluÌda com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
+                    printf("\nRemo√ß√£o conclu√≠da com sucesso\nLinhas afetadas:%d\n",mysql_affected_rows(&conexao));
                 }
 
            }else{
-                printf("\nFalha na remoÁ„o.Tente novamente\n");
+                printf("\nFalha na remo√ß√£o.Tente novamente\n");
            }
            system("PAUSE");
            mysql_close(&conexao);
 
         }else{
 
-            printf("\nFalha na conex„o ao banco de dados\n");
+            printf("\nFalha na conex√£o ao banco de dados\n");
             printf("Erro %d: %s\n", mysql_errno(&conexao), mysql_error(&conexao));
 
         }
